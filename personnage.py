@@ -1,14 +1,3 @@
-class Arme:
-    def __init__(self, nom, degats):
-        self.nom = nom
-        self.degats = degats
-
-class Sort:
-    def __init__(self, nom, degats, mana):
-        self.nom = nom
-        self.degats = degats
-        self.mana = mana
-
 class Personnage:
     def __init__(self, nom, points_de_vie, arme):
         self.nom = nom
@@ -26,11 +15,11 @@ class Personnage:
         print(f"{self.nom} possède {self.points_de_vie} points de vie")
 
     def estVivant(self):
-        return self.points_de_vie > 0
-
-    def mourir(self):
-        print(f"{self.nom} est mort !")
-        del self
+        if (self.points_de_vie > 0) : 
+            print("Toujours vivant comme Renaud")
+        else :
+            print(f"{self.nom} est mort !")
+            del self
 
 class Guerrier(Personnage):
     def __init__(self, nom, points_de_vie, arme):
@@ -69,40 +58,3 @@ class Archer(Personnage):
         print("Je vise avec précision !")
         print(f"{self.nom} attaque {cible.nom} avec {self.arme.nom} et inflige {self.arme.degats} points de dégâts !")
         cible.points_de_vie -= self.arme.degats
-
-
-# Exemple d'utilisation :
-
-epee = Arme("Épée", 20)
-arc = Arme("Arc", 15)
-
-mega_massue_de_la_mort_qui_pique = Arme("Mega massue de la mort qui pique", 40)
-
-boule_de_feu = Sort("Boule de feu", 20, 30)
-boule_de_glace = Sort("Boule de Glace", 30, 45)
-
-guerrier = Guerrier("Garen", 100, epee)
-mage = Mage("Ahri", 80, boule_de_feu, 100)
-archer = Archer("Ashe", 90, arc)
-
-print ("Premier tour")
-guerrier.fonce_dans_le_tas(mage)
-mage.lancer_sort(archer, boule_de_feu)
-archer.viser(guerrier)
-
-guerrier.info()
-mage.info()
-archer.info()
-
-mage.lancer_sort(archer, boule_de_feu)
-
-mage.lancer_sort(archer, boule_de_feu)
-
-mage.lancer_sort(archer, boule_de_glace)
-print(f"En trébuchant, {guerrier.nom} tombe sur une {mega_massue_de_la_mort_qui_pique.nom} et l'équipe")
-guerrier.equiper_arme(mega_massue_de_la_mort_qui_pique)
-guerrier.fonce_dans_le_tas(archer)
-
-archer.info()
-
-archer.estVivant()
