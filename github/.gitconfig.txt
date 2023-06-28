@@ -1,3 +1,0 @@
-[BaptisteLeroux]
-    name = BaptisteLeroux
-    email = baptiste.leroux1999@gmail.com
