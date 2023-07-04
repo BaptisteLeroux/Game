@@ -1,3 +1,5 @@
+import random as rd
+
 class Personnage:
     def __init__(self, nom, points_de_vie, arme):
         self.nom = nom
@@ -64,3 +66,13 @@ class Rodeur(Archer):
         super().__init__(nom, points_de_vie, arme)
         self.classe = "Archer"
         self.cc = cc
+
+    def coup_critique(self, cible):
+        if (rd.randint < self.cc):
+            print(f"{self.nom} attaque {cible.nom} avec {self.arme.nom} et inflige {self.arme.degats} points de dégâts ! C'est un coup critique !")
+            cible.points_de_vie -= 3*self.arme.degats
+        else :
+            print(f"{self.nom} attaque {cible.nom} avec {self.arme.nom} et inflige {self.arme.degats} points de dégâts !")
+            cible.points_de_vie -= self.arme.degats
+
+
