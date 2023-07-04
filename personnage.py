@@ -1,4 +1,4 @@
-a = test
+import random as rd
 
 class Personnage:
     def __init__(self, nom, points_de_vie, arme):
@@ -51,6 +51,7 @@ class Mage(Personnage):
     def info(self):
         print(f"{self.nom} possède {self.points_de_vie} points de vie et {self.points_de_mana} points de mana")
 
+
 class Archer(Personnage):
     def __init__(self, nom, points_de_vie, arme):
         super().__init__(nom, points_de_vie, arme)
@@ -60,3 +61,14 @@ class Archer(Personnage):
         print("Je vise avec précision !")
         print(f"{self.nom} attaque {cible.nom} avec {self.arme.nom} et inflige {self.arme.degats} points de dégâts !")
         cible.points_de_vie -= self.arme.degats
+
+class Rodeur(Archer): 
+    def __init__(self, nom, points_de_vie, arme, cc): 
+        super.__init__(nom, points_de_vie, arme)
+        self.classe = "Rodeur"
+        self.cc = cc
+
+    def coup_critique(self, cible):
+        if (rd.randint <= self.cc) : 
+            print(f"{self.nom} attaque {cible.nom} avec {self.arme.nom} et inflige {self.arme.degats} points de dégâts ! C'est un coup critique ! ")
+            cible.points_de_vie -= 3*self.arme.degats
