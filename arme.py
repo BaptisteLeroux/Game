@@ -9,3 +9,7 @@ armes_disponibles = [
     Arme("Mega massue de la mort qui pique", 40)
 ]
 
+
+epee = Arme("Épée", 20)
+arc = Arme("Arc", 15)
+mega_massue_de_la_mort_qui_pique = Arme("Mega massue de la mort qui pique", 40)

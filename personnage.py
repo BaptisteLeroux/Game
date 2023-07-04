@@ -1,10 +1,11 @@
 import random as rd
 
 class Personnage:
-    def __init__(self, nom, points_de_vie, arme):
+    def __init__(self, nom, points_de_vie, arme, xp):
         self.nom = nom
         self.points_de_vie = points_de_vie
         self.arme = arme
+        self.xp = xp
     
     def attaquer(self, cible):
         print(f"{self.nom} attaque {cible.nom} avec {self.arme.nom} !")
@@ -16,6 +17,9 @@ class Personnage:
     def info(self):
         print(f"{self.nom} possède {self.points_de_vie} points de vie")
 
+    def boire_potion_de_vie(self):
+        self.points_de_vie += 20
+
     def estVivant(self):
         if (self.points_de_vie > 0) : 
             print("Toujours vivant comme Renaud")
@@ -24,8 +28,8 @@ class Personnage:
             del self
 
 class Guerrier(Personnage):
-    def __init__(self, nom, points_de_vie, arme):
-        super().__init__(nom, points_de_vie, arme)
+    def __init__(self, nom, points_de_vie, arme, xp):
+        super().__init__(nom, points_de_vie, arme, xp)
         self.classe = "Guerrier"
     
     def fonce_dans_le_tas(self, cible):
@@ -35,8 +39,8 @@ class Guerrier(Personnage):
 
 
 class Mage(Personnage):
-    def __init__(self, nom, points_de_vie, arme, points_de_mana):
-        super().__init__(nom, points_de_vie, arme)
+    def __init__(self, nom, points_de_vie, arme, points_de_mana, xp):
+        super().__init__(nom, points_de_vie, arme, xp)
         self.classe = "Mage"
         self.points_de_mana = points_de_mana
     
@@ -51,9 +55,13 @@ class Mage(Personnage):
     def info(self):
         print(f"{self.nom} possède {self.points_de_vie} points de vie et {self.points_de_mana} points de mana")
 
+    
+    def boire_potion_de_mana(self):
+        self.points_de_mana += 20
+
 class Archer(Personnage):
-    def __init__(self, nom, points_de_vie, arme):
-        super().__init__(nom, points_de_vie, arme)
+    def __init__(self, nom, points_de_vie, arme, xp):
+        super().__init__(nom, points_de_vie, arme, xp)
         self.classe = "Archer"
     
     def viser(self, cible):
@@ -62,13 +70,13 @@ class Archer(Personnage):
         cible.points_de_vie -= self.arme.degats
 
 class Rodeur(Archer):
-    def __init__(self, nom, points_de_vie, arme, cc):
-        super().__init__(nom, points_de_vie, arme)
+    def __init__(self, nom, points_de_vie, arme, xp, cc):
+        super().__init__(nom, points_de_vie, arme, xp)
         self.classe = "Archer"
         self.cc = cc
 
     def coup_critique(self, cible):
-        if (rd.randint < self.cc):
+        if (rd.random() < self.cc):
             print(f"{self.nom} attaque {cible.nom} avec {self.arme.nom} et inflige {self.arme.degats} points de dégâts ! C'est un coup critique !")
             cible.points_de_vie -= 3*self.arme.degats
         else :
